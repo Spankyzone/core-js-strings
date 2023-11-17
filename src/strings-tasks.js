@@ -319,10 +319,18 @@ function containsSubstring(str, substring) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels(str) {
+  const vowels = 'aeiouy';
+  const arr = str.toLocaleLowerCase().split('');
+  const result = arr.reduce((sum, initVal) => {
+    if (vowels.includes(initVal)) {
+      // eslint-disable-next-line no-param-reassign
+      sum += 1;
+    }
+    return sum;
+  }, 0);
+  return result;
 }
-
 /**
  * Returns true if the string is a palindrome; otherwise false.
  * https://en.wikipedia.org/wiki/Palindrome
@@ -336,8 +344,15 @@ function countVowels(/* str */) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  const regExp = /!|\?|,|\s/g;
+  const lowStr = str.toLowerCase().replace(regExp, '');
+  const clean = str.toLowerCase().replace(regExp, '');
+  const reversedClean = clean.split('').reverse().join('');
+  if (lowStr === reversedClean) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -370,8 +385,10 @@ function findLongestWord(sentence) {
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords(/* str */) {
-  throw new Error('Not implemented');
+function reverseWords(str) {
+  const arr = str.split(' ');
+  const revArr = arr.map((el) => el.split('').reverse().join(''));
+  return revArr.join(' ');
 }
 
 /**
